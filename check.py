@@ -31,14 +31,12 @@ def is_running(script):
     return False
 
 
-def kill(script):
-    os.system("")
+
 
 
 
 try:
     while True:
-        print("timer")
         if checkIfProcessRunning('spotify'):
             print("spotify is running")
             
@@ -47,19 +45,17 @@ try:
             
 
             if is_running("muter.py")==True:
-                print("muter is running")
                 pass
             
             else:
-                print("muter is not running will start it")
+                print("muter is not running, will start it")
                 thread1.start()
             
             time.sleep(10)
             
             
         else:
-            print('No Spotify process was running')
+            print('No, Spotify process was running')
             time.sleep(10)
-            kill("muter.py")
 except KeyboardInterrupt:
     sys.exit()
