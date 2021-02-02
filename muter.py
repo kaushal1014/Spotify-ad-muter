@@ -54,7 +54,7 @@ while True:
         for session in sessions:
             volume = session.SimpleAudioVolume
             volume.SetMute(1, None)
-            print("bye")
+            
     else:
         sessions = AudioUtilities.GetAllSessions()
         for session in sessions:
