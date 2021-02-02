@@ -1,9 +1,22 @@
-import ctypes 
-import time   
 from pycaw.pycaw import AudioUtilities 
+import os,threading,time,ctypes
+from win10toast import ToastNotifier
+import multiprocessing,threading
+
+toaster = ToastNotifier()
+def notification():
+    toaster.show_toast("Spotify", "ad incoming gonna mute it master", threaded=True,
+                   icon_path="spotify.ico", duration=4)  
+    time.sleep(40)
+
+#NotiProcess=multiprocessing.Process(target=notification)
+
+
+
 
 
 while True:
+    NotiProcess=threading.Thread(target=notification)
     EnumWindows = ctypes.windll.user32.EnumWindows    
     EnumWindowsProc = ctypes.WINFUNCTYPE(ctypes.c_bool, ctypes.POINTER(ctypes.c_int), ctypes.POINTER(ctypes.c_int))
     GetWindowText = ctypes.windll.user32.GetWindowTextW
@@ -22,7 +35,13 @@ while True:
     EnumWindows(EnumWindowsProc(foreach_window), 0)
     if "Advertisement" in titles:  
         sessions = AudioUtilities.GetAllSessions()
+        if NotiProcess.is_alive()==True:
+            pass
+        else:
+            NotiProcess.start()
+        
         for session in sessions:
+            
             volume = session.SimpleAudioVolume
             volume.SetMute(1, None)
     elif "Spotify" in titles:      
@@ -35,3 +54,8 @@ while True:
         for session in sessions:
             volume = session.SimpleAudioVolume
             volume.SetMute(0, None)
+
+
+
+
+

@@ -1,8 +1,5 @@
-import psutil
-import os
-import time
-import sys
-import threading
+import psutil,os,time,sys,threading
+
 def checkIfProcessRunning(processName):
     print("checking")
     #Iterate over the all the running process
