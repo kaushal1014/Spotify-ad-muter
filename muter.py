@@ -9,7 +9,9 @@ def notification():
                    icon_path="spotify.ico", duration=4)  
    
     
-
+def AdOver():
+    toaster.show_toast("Spotify", "ad over gonna unmute it master", threaded=True,
+                   icon_path="spotify.ico", duration=4)  
 
 
 x=0
@@ -43,7 +45,7 @@ while True:
             pass
             
         x=x+1
-        print(x)
+        
         for session in sessions:
             
             volume = session.SimpleAudioVolume
@@ -57,6 +59,8 @@ while True:
             
     else:
         sessions = AudioUtilities.GetAllSessions()
+        if x>0:
+            AdOver()
         for session in sessions:
             volume = session.SimpleAudioVolume
             volume.SetMute(0, None)
