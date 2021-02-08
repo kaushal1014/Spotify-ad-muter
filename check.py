@@ -52,7 +52,7 @@ try:
             
             
         else:
-            print('No, Spotify process was running')
+            print('No spotify process is running')
             time.sleep(10)
 except KeyboardInterrupt:
     sys.exit()
