@@ -3,3 +3,6 @@ This is a automated spotify ad muter which checks if the ad is playing or not an
     pip install win10toast(notifier)
     pip install pycaw(Audio utilities)
 
+Bat file made for startup purpose.
+
+Based on python 3.7
